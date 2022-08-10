@@ -1,0 +1,251 @@
+body .body-dashboard{
+    margin: 0;
+    padding: 0;
+    max-width: 100% !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    background-color: #F0F4F3;
+}
+
+.circle-menu {
+    height: 50px !important;
+    width: 50px !important;
+}
+
+.circle-menu-big {
+    height: 60px !important;
+    width: 60px !important;
+}
+
+.fontSize-18 {
+    font-size: 18px;
+}
+
+.fontSize-22 {
+    font-size: 22px;
+}
+
+.fontSize-24 {
+    font-size: 24px;
+}
+
+.bg-f3 {
+    background-color: #FFFFFF33 !important;
+}
+
+.fontSize-16 {
+    font-size: 16px;
+}
+
+.fontSize-14 {
+    font-size: 14px;
+}
+
+.font-med {
+    font-weight: 600;
+}
+
+.dropdown-toggle::after {
+    display: none !important; 
+}
+
+.dropdown-toggle {
+    background-color: unset !important;
+    border: unset !important;
+    box-shadow: unset !important;
+}
+
+.dropdown-menu {
+    min-width: 303px !important;
+    margin-top: 30px !important;
+}
+
+.cricle-dot {
+    width: 70px;
+    height: 70px;
+}
+
+.border-unset {
+    border: unset !important;
+    box-shadow: unset !important;
+}
+
+.inputChngPin {
+    border-radius: 10px; 
+    border: 1px solid #A9A9A999; 
+    padding: 10px 10px;
+}
+
+
+/* color/bg */
+.colorIn {
+    color: #1EC15F;
+}
+.background-in {
+    background-color: #1EC15F;
+}
+
+.background-dash-primary-trans {
+    background-color: #6379F426 !important;
+}
+
+.colorOut {
+    color: #FF5B37;
+}
+
+.background-out {
+    background-color: #FF5B37;
+}
+
+.background-e5 {
+    background-color: #E5E8ED !important;
+}
+
+.color-Thrid {
+    color: #DFDCDC;
+}
+
+.color-thrid-sub {
+    color: #7A7886;
+}
+
+.color-3a {
+    color: #3A3D42;
+}
+
+.color-7a {
+    color: #7A7886;
+}
+
+.color-7e {
+    color: #7E7D84;
+}
+
+.color-51 {
+    color: #514F5B;
+}
+
+.color-a9{
+    color: #A9A9A9;
+}
+
+.background-dash-white {
+    background-color: white !important;
+}
+
+.background-dash-3a3 {
+    background-color: #3A3D421A !important;
+}
+
+.color-4d {
+    color: #4D4B57;
+}
+
+.background-primary {
+    background-color: #5CC6BA !important;
+}
+
+.background-primary-transparant {
+    background-color: #6379F4 !important;
+}
+/* color/bg */
+
+
+footer .footer-dashboard {
+    background-color: #6379F4;
+    color: #ffff;
+}
+
+.container-wrap {
+    min-height: 678px !important;
+}
+
+.navButton a{
+    color: #3A3D42CC;
+}
+
+.navButton a:hover{
+    color: #5CC6BA;
+}
+
+.balance-wrap {
+    /* padding: 30px;  */
+    min-height: 190px !important; 
+    background-color: #6379F4;
+}
+
+.searchListWrap {
+    padding: 20px !important; 
+    min-height: 110px !important;
+}
+
+.iconSearch {
+    background: unset !important;
+    border: unset !important;
+    border-radius: unset !important;
+}
+
+.inputSearch {
+    border: unset !important;
+    border-radius: unset !important;
+    background: unset !important;
+}
+
+.inputSearch:focus {
+    border-color: gray !important;
+    box-shadow: unset !important;
+}
+
+.search-reciver-input input::placeholder {
+    color: #3A3D4266;
+}
+
+.amoutWarp {
+    padding: 15px;
+    border: unset;
+    background: unset;
+}
+
+/* dunno */
+input[type=number] {
+    -moz-appearance: textfield;
+    text-align: center;
+    font-size: 42px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    padding-right: unset !important;
+    background-size: 0.5em !important;
+}
+/* dunno */
+
+
+@media only screen and (min-width: 768px) {
+    .dropdown-menu {
+        min-width: 403px !important;
+        margin-top: 53px !important;
+    }
+    
+    .listHomeWarp {
+        padding: 20px 30px !important; 
+        min-height: 96px !important;
+    }
+
+    .dropdown-size-home {
+        min-width: 200px !important;
+    }
+    .round-bott {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        padding: 42px 150px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    /* .container-wrap {
+        padding: 40px 150px !important;
+    } */
+    .col-md-5 {
+        flex: unset !important;
+    }
+}

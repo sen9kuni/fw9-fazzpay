@@ -1,0 +1,129 @@
+.logoMobile{
+    background-color: #5CC6BA;
+    color: #ffff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.auth-background {
+    background-image: url("../public/images/bgweve2.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.iconLogin {
+    background: unset !important;
+    border: unset !important;
+    border-radius: unset !important;
+    border-bottom: 1px solid #A9A9A999 !important;
+}
+
+.inputLogin {
+    border: unset !important;
+    border-radius: unset !important;
+    border-bottom: 1px solid #A9A9A999 !important;
+}
+
+.inputLogin::placeholder {
+    color: #A9A9A999 !important;
+}
+
+.inputLogin:focus {
+    border-color: #A9A9A999 !important;
+    box-shadow: unset !important;
+}
+
+.fontMid {
+    font-weight: 600;
+}
+
+.DashbuttonLogin {
+    background-color: #5CC6BA !important;
+    border: unset !important;
+    min-height: 57px !important;
+}
+
+.DashbuttonLogin:hover {
+    background: #B8E2DE !important;
+}
+
+.colorA9Trans {
+    color: #A9A9A999;
+}
+
+.pinInput-wrap {
+    max-height: 65px !important;
+}
+
+.pinInput-wrap input:focus {
+    outline: none !important;
+}
+
+.inputPinWrap {
+    border-radius: 10px !important; 
+    border: 1px solid gray !important; 
+    padding: 10px 10px !important;
+}
+
+.pinInput {
+    font-size: 30px; 
+    text-align: center; 
+    width: 40px; 
+    border: unset; 
+    border-bottom: 1px solid gray;
+}
+
+.pinInput-wrap {
+    max-height: 65px;
+}
+
+.inputChngPin {
+    border-radius: 10px; 
+    border: 1px solid #A9A9A999; 
+    padding: 10px 10px;
+}
+
+.input-pin-com:focus {
+    outline: none !important;
+}
+
+.max-min-pin-wrap {
+    height: 65px !important;
+    width: 53px !important;
+    border: 1px solid #A9A9A999 !important; 
+}
+
+.max-min-pin-wrap input {
+    border-radius: unset;
+    border-bottom: 1px solid #A9A9A999 !important; 
+}
+
+.max-min-pin-wrap input:focus{
+    box-shadow: none !important;
+}
+
+.max-min-pin {
+    height: 45px !important;
+    width: 35px !important;
+}
+
+/* input[type=number] {
+    -moz-appearance: textfield;
+} */
+
+.dotCheckWrap {
+    display: flex;
+    height: 70px;
+    width: 70px;
+    background-color: #1EC15F;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media only screen and (min-width: 992px) {
+    .auth-from-wraper {
+        padding: 150px;
+    }
+} 

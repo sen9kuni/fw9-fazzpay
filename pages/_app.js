@@ -1,4 +1,8 @@
-import '../styles/globals.css'
+// import '../styles/globals.css'
+import '../styles/style.css'
+import '../styles/login.css'
+import '../styles/home.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
