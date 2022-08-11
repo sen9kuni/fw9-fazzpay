@@ -6,6 +6,10 @@ body .body-dashboard{
     background-color: #F0F4F3;
 }
 
+.margin-bottom-pin {
+    margin-bottom: 250px;
+}
+
 .circle-menu {
     height: 50px !important;
     width: 50px !important;
