@@ -7,10 +7,13 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
 import {FiMail, FiLock} from 'react-icons/fi'
+import axios from '../../helper/axios'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 const loginSechema  = Yup.object().shape({
   email: Yup.string().email('Invalid email address format').required(),
-  password: Yup.string().min(8).required()
+  password: Yup.string().min(3).required()
 })
 
 const AuthForm = ({errors, handleSubmit, handleChange})=> {
@@ -56,6 +59,19 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
 }
 
 export default function Login() {
+  const navigate = useRouter()
+  const handleLogin = async (value) => {
+    try {
+      const result = await axios.post('auth/login', value)
+      Cookies.set('token', result.data.data.token)
+      if (Cookies.get('token') !== null) {
+        navigate.push('/home')
+      }
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
+  }
   return (
     <>
     <Head>
@@ -67,7 +83,7 @@ export default function Login() {
       <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>
         <h3 className="text-start fs-3 fw-bold colorSecondary">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</h3>
         <p className="text-start fw-normal text-muted">Transfering money is eassier than ever, you can access <br/> Zwallet wherever you are. Desktop, laptop, mobile phone? <br/> we cover all of that for you!</p>
-        <Formik initialValues={{email: '', password: ''}} validationSchema={loginSechema}>
+        <Formik initialValues={{email: '', password: ''}} validationSchema={loginSechema} onSubmit={handleLogin}>
           {(props)=><AuthForm {...props}/>}
         </Formik>
       </Col>

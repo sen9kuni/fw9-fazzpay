@@ -31,8 +31,16 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
         <span className="input-group-text iconLogin">
           <FiUser size={24} className='colorA9Trans'/>
         </span>
-        <Form.Control name='username' className='inputLogin' onChange={handleChange} type="text" placeholder="Enter your username" isInvalid={!!errors.username} />
-        <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
+        <Form.Control name='firstname' className='inputLogin' onChange={handleChange} type="text" placeholder="Enter your firstname" isInvalid={!!errors.firstname} />
+        <Form.Control.Feedback type='invalid'>{errors.firstname}</Form.Control.Feedback>
+      </Form.Group>
+      
+      <Form.Group className="mb-3 input-group">
+        <span className="input-group-text iconLogin">
+          <FiUser size={24} className='colorA9Trans'/>
+        </span>
+        <Form.Control name='lastname' className='inputLogin' onChange={handleChange} type="text" placeholder="Enter your lastname" isInvalid={!!errors.lastname} />
+        <Form.Control.Feedback type='invalid'>{errors.lastname}</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3 input-group">

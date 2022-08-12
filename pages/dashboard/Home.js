@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Container, Col} from 'react-bootstrap'
 import ComHeadaer from '../../components/organisms/ComHeader'
 import ComMenu from '../../components/organisms/ComMenu'
@@ -8,8 +8,21 @@ import {FiPlus, FiArrowUp, FiArrowDown} from 'react-icons/fi'
 import ListHistoryIncome from '../../components/molecules/ListHistoryIncome'
 import ListHistoryExpense from '../../components/molecules/ListHistoryExpense'
 import ComFooter from '../../components/organisms/ComFooter'
+import axios from '../../helper/axios'
 
 export default function Home() {
+
+  useEffect(()=> {
+    getDatauser()
+  }, [])
+  const getDatauser =  async() => {
+    try {
+      const result = await axios.get('/user?page=1&limit=50&search=&sort=firstName ASC')
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   return (
     <div className='body-dashboard'>
         <ComHeadaer />
