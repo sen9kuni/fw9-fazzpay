@@ -64,6 +64,7 @@ export default function Login() {
     try {
       const result = await axios.post('auth/login', value)
       Cookies.set('token', result.data.data.token)
+      Cookies.set('id', result.data.data.id)
       if (Cookies.get('token') !== null) {
         navigate.push('/home')
       }

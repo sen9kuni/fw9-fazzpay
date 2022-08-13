@@ -5,6 +5,9 @@ import DashboardRight from '../../components/organisms/DashboardRight'
 import LogoDashboard from '../../components/organisms/LogoDashboard'
 import { Formik } from 'formik'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import axios from '../../helper/axios'
+import Cookies from 'js-cookie'
 
 
 const CreatePinForm = ({errors, handleSubmit, handleChange}) => {
@@ -19,21 +22,29 @@ const CreatePinForm = ({errors, handleSubmit, handleChange}) => {
         <PinInputOne name='pin6' type='text' />
       </div>
       <span>{errors.pin}</span>
-      <Link href='/sign-up/create-pin/success'>
+      {/* <Link href='/sign-up/create-pin/success'> */}
         <Button type="submit" className='d-flex background-primary p-3 justify-content-center border-unset fw-bold fontSize-16 colorWhite mt-5'>
         Continue
         </Button>
-      </Link>
+      {/* </Link> */}
     </Form>
   )
 }
 
-export default function createPin() {
-  const onSubmitPin = (value) => {
-    const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
-    const data = {email: email, pin: fullPin}
-    // dispatch(createPin(data))
-    // navigate('/pinsuccess')
+export default function CreatePin() {
+  const navigate = useRouter()
+  const onSubmitPin = async (value) => {
+    try {
+      const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
+      const data = {pin: fullPin}
+      const result = await axios.patch(`/user/pin/${Cookies.get('id')}`, data)
+      console.log(result);
+      window.alert(result.data.msg)
+      navigate.push('/auth/create-pin/success')
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
   }
   return (
     <>

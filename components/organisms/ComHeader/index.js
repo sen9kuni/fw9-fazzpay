@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Dropdown } from 'react-bootstrap'
 import {FiBell, FiArrowDown, FiArrowUp} from 'react-icons/fi'
 import Link from "next/link"
+import Image from 'next/image'
+import Cookies from 'js-cookie'
+import axios from '../../../helper/axios'
+import { useRouter } from 'next/router'
 
 export default function ComHeadaer() {
+  const navigate = useRouter()
+  const [data, setData] = useState({})
+  useEffect(()=> {
+    getDatauser()
+    // checkpin()
+  }, [])
+  const getDatauser =  async() => {
+    try {
+      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
+      setData(result.data.data)
+      console.log(result.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  // const checkpin = async () => {
+  //   try {
+  //     const result2 = await axios.get('/user/pin')
+  //     console.log(result2.data.msg);
+  //   } catch (e) {
+  //     console.log(e.response.data.msg);
+  //     window.alert(e.response.data.msg)
+  //     navigate.push('/auth/create-pin')
+  //   }
+    
+  // }
   return (
     <>
     <Row className='d-flex flex-column flex-md-row align-items-md-center mw-100 m-0 shadow-sm round-bott bg-white'>
@@ -11,23 +41,25 @@ export default function ComHeadaer() {
           <div className="d-flex justify-content-start">
             <Link href='/home'>
               <a className="text-decoration-none">
-                <span className="fw-bold fs-3 colorPrimary">BooWallet</span>
+                <span className="fw-bold fs-3 colorPrimary">FazzPay</span>
               </a>
             </Link>
           </div>
         </Col>
         <Col md={6}>
           <div className='d-flex p-3 p-md-0 justify-content-md-end align-items-center justify-content-between'>
-            <div className="d-flex flex-row">
-              <Link href='/home'>
+            <div className="d-flex flex-row min-w-profile-nav gap-3 align-items-center">
+              <Link href='/profile'>
                 <a className="text-decoration-none">
-                  aaaa
+                  <div className='image-frame-profile-header rounded-2 overflow-hidden'>
+                    <Image src={data.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${data.image}` : '/images/sam.png'} alt='aaaaaa' height={60} width={60} />
+                  </div>
                 </a>
                 {/* <img className='img-fluid' src={ProfilePic} alt="profile pic"/> */}
               </Link>
               <div className="d-flex flex-column px-2">
-                <span className="fw-bold textProfileName">ayam</span>
-                <span className="fw-normal textProfileNumber">ayam</span>
+                <span className="fw-bold textProfileName">{data.firstName} {data.lastName}</span>
+                <span className="fw-normal textProfileNumber">{data.noTelp}</span>
               </div>
             </div>
 

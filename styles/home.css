@@ -79,6 +79,21 @@ body .body-dashboard{
     padding: 10px 10px;
 }
 
+.loading-size-image {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.image-frame-profile-header {
+    width: 52px;
+    height: 52px;
+}
+
+.image-frame-profile-profile {
+    width: 80px;
+    height: 80px;
+}
+
 
 /* color/bg */
 .colorIn {
@@ -251,5 +266,9 @@ input::-webkit-inner-spin-button {
     } */
     .col-md-5 {
         flex: unset !important;
+    }
+
+    .min-w-profile-nav {
+        min-width: 264px !important;
     }
 }

@@ -17,11 +17,11 @@ const nextConfig = {
         destination: '/auth/register',
       },
       {
-        source: '/sign-up/create-pin',
+        source: '/auth/create-pin',
         destination: '/auth/createPin',
       },
       {
-        source: '/sign-up/create-pin/success',
+        source: '/auth/create-pin/success',
         destination: '/auth/pinSuccess',
       },
       {
@@ -91,7 +91,7 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['res.cloudinary.com']
+    domains: ['res.cloudinary.com'],
   }
 }
 

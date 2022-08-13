@@ -18,10 +18,10 @@ export default function pinSuccess() {
           <h3 className="text-start fs-3 fw-bold colorSecondary">Your PIN Was Successfully Created</h3>
           <p className="text-start fw-normal text-muted">Your PIN was successfully created and you can now access all the features in Zwallet. Login to your new account and start exploring!</p>
 
-          <Link href='/login'>
+          <Link href='/home'>
             <a className="text-decoration-none">
               <div className="d-grid">
-                <button className="btn DashbuttonLogin fw-bold colorWhite text-decoration-none">Login Now</button>
+                <button className="btn DashbuttonLogin fw-bold colorWhite text-decoration-none">Go To Dashboard</button>
               </div>
             </a>
           </Link>

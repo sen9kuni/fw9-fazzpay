@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Container, Col} from 'react-bootstrap'
 import ComHeadaer from '../../components/organisms/ComHeader'
 import ComMenu from '../../components/organisms/ComMenu'
@@ -9,16 +9,28 @@ import ListHistoryIncome from '../../components/molecules/ListHistoryIncome'
 import ListHistoryExpense from '../../components/molecules/ListHistoryExpense'
 import ComFooter from '../../components/organisms/ComFooter'
 import axios from '../../helper/axios'
+import Image from 'next/image'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
+export const numberFormat = (value) =>
+  new Intl.NumberFormat('id-IN', {
+    style: 'currency',
+    currency: 'IDR'
+  }).format(value);
+
+// csr
 export default function Home() {
-
+  const navigate = useRouter()
+  const [data, setData] = useState({})
   useEffect(()=> {
     getDatauser()
   }, [])
   const getDatauser =  async() => {
     try {
-      const result = await axios.get('/user?page=1&limit=50&search=&sort=firstName ASC')
-      console.log(result);
+      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
+      setData(result.data.data)
+      // console.log(result.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -33,8 +45,8 @@ export default function Home() {
             <Col className='d-flex flex-row justify-content-between align-items-center balance-wrap p-4 rounded background-primary'>
               <div className="d-flex flex-column gap-1">
                 <span className="fw-normal fontSize-18 color-Thrid">Balance</span>
-                <span className="fs-1 fw-bold fontWhite">10.000</span>
-                <span className="fontMid fontSize-14 color-Thrid">+62 813-9387-7946</span>
+                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(data.balance))}</span>
+                <span className="fontMid fontSize-14 color-Thrid">{data.noTelp}</span>
               </div>
               <div className="d-flex flex-column gap-2">
                 <Link href='#'>
@@ -72,6 +84,7 @@ export default function Home() {
                 </div>
                 <div className="d-flex justify-content-center mt-5">
                   {/* <img className='img-fluid' src={GraphicPic} alt="graphic"/> */}
+                  <Image src='/images/graphic.svg' width={341} height={268} alt='grapic money' />
                 </div>
               </Col>
 
@@ -88,6 +101,11 @@ export default function Home() {
                 <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
+                {/* {data.map((o)=> (
+                  <div key={o.id}>
+                    <h5 className='color-3a'>{o.firstName}</h5>
+                  </div>
+                ))} */}
                 {/* {history?.results?.map((o) => {
                   if(o.type === 'transfer' && o.sender === 'dummy') {
                     return (
@@ -107,6 +125,7 @@ export default function Home() {
                     )
                   }
                 })} */}
+                {/* <Image src={'https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/Fazzpay/bqz00rnxwa1mzwqmudyh.jpg'} width={100} height={100} alt='ayam' /> */}
               </Col>
             </Col>
           </Col>

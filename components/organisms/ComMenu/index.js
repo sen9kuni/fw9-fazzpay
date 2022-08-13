@@ -32,7 +32,7 @@ export default function ComMenu() {
           </Link>
         </div>
         <div className="navButton">
-          <Link href='#'>
+          <Link href='/profile'>
             <a className="d-flex flex-row gap-3 align-items-center text-decoration-none">
               <FiUser size={28} />
               <span className="fw-bold">Profile</span>

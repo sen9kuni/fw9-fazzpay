@@ -5,11 +5,14 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import {  FiLock } from 'react-icons/fi'
 import {Container, Col, Button, Form, Alert } from 'react-bootstrap'
+import { useRouter } from 'next/router'
+import axios from '../../helper/axios'
+import Cookies from 'js-cookie'
 
 const createNewPassSechema  = Yup.object().shape({
-  currentPassword: Yup.string().min(8).required('Current passwordis a required field'),
-  newPassword: Yup.string().min(8).required('New password is a required field'),
-  repeatNewPassword: Yup.string().min(8).required('Repeat new password is a required field')
+  currentPassword: Yup.string().min(3).required('Current passwordis a required field'),
+  newPassword: Yup.string().min(3).required('New password is a required field'),
+  repeatNewPassword: Yup.string().min(3).required('Repeat new password is a required field')
 })
 
 const AuthForm = ({errors, handleSubmit, handleChange})=> {
@@ -59,6 +62,21 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
 }
 
 export default function ChangePassword() {
+  const navigate = useRouter()
+  const onChangePassword = async (value) => {
+    try {
+      const data = {oldPassword: value.currentPassword, newPassword: value.newPassword, confirmPassword: value.repeatNewPassword}
+      const result = await axios.patch(`/user/password/${Cookies.get('id')}`, data)
+      console.log(result);
+      window.alert(result.data.msg)
+      if (result.data.msg == 'Success update password') {
+        navigate.push('/profile')
+      }
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
+  }
   return (
     <MainComponent>
       <div className='d-flex flex-column gap-3'>
@@ -66,7 +84,7 @@ export default function ChangePassword() {
               <p className='text-start fontSize-16 color-7a'>You must enter your current password and then<br /> type your new password twice.</p>
             </div>
             <div className='d-flex flex-column gap-5 w-50 mx-auto'>
-              <Formik initialValues={{currentPassword: '', newPassword: '', repeatNewPassword: ''}} validationSchema={createNewPassSechema}>
+              <Formik initialValues={{currentPassword: '', newPassword: '', repeatNewPassword: ''}} validationSchema={createNewPassSechema} onSubmit={onChangePassword}>
                 {(props)=><AuthForm {...props}/>}
               </Formik>
             </div>
