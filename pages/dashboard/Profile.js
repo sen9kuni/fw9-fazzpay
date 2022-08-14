@@ -46,7 +46,7 @@ export default function Profile() {
       <div className='d-flex flex-column gap-4 w-50 mx-auto'>
         <ButtonProfile target='/profile/personal-information' text='Personal Information' logo={<FiArrowRight size={25} className='color-7e' />}  />
         <ButtonProfile target='/profile/change-password' text='Change Password' logo={<FiArrowRight size={25} className='color-7e' />}  />
-        <ButtonProfile target='#' text='Change PIN' logo={<FiArrowRight size={25} className='color-7e' />}  />
+        <ButtonProfile target='/profile/change-pin-old' text='Change PIN' logo={<FiArrowRight size={25} className='color-7e' />}  />
         <ButtonProfile target='#' text='Logout' />
       </div>
     </MainComponent>
