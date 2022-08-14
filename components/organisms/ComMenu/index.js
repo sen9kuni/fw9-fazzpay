@@ -2,6 +2,7 @@ import React from 'react'
 import {FiGrid, FiPlus, FiArrowUp, FiUser, FiLogOut} from 'react-icons/fi'
 import {Col} from 'react-bootstrap'
 import Link from "next/link"
+import ModalTopup from '../ModalTopup'
 
 export default function ComMenu() {
   return (
@@ -16,21 +17,22 @@ export default function ComMenu() {
           </Link>
         </div>
         <div className="navButton">
-          <Link href='#'>
+          <Link href='/search-recevier'>
             <a className="d-flex flex-row gap-3 align-items-center text-decoration-none">
               <FiArrowUp size={28} />
               <span className="fw-bold">Transfer</span>
             </a>
           </Link>
         </div>
-        <div className="navButton">
+        {/* <div className="navButton">
           <Link href='/top-up'>
             <a className="d-flex flex-row gap-3 align-items-center text-decoration-none">
               <FiPlus size={28} />
               <span className="fw-bold">Top Up</span>
             </a>
           </Link>
-        </div>
+        </div> */}
+        <ModalTopup />
         <div className="navButton">
           <Link href='/profile'>
             <a className="d-flex flex-row gap-3 align-items-center text-decoration-none">

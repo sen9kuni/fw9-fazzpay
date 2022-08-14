@@ -4,6 +4,8 @@ import {Row, Col, Form, Button} from 'react-bootstrap'
 import PinInputOne from '../../components/molecules/inputPinOne'
 import { Formik } from 'formik'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import axios from '../../helper/axios'
 
 const ChangePinForm = ({errors, handleSubmit, handleChange}) => {
   return(
@@ -27,6 +29,22 @@ const ChangePinForm = ({errors, handleSubmit, handleChange}) => {
 }
 
 export default function ChangePinOld() {
+  const navigate = useRouter()
+  const onOldPin = async (value) => {
+    try {
+      const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
+      // const data = {pin: fullPin}
+      const result = await axios.get(`/user/pin?pin=${fullPin}`)
+      console.log(result);
+      window.alert(result.data.msg)
+      if (result.data.msg == 'Correct pin') {
+        navigate.push('/profile/change-pin-new')
+      }
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
+  }
   return (
     <MainComponent>
       <div className='d-flex flex-column gap-3 min'>
@@ -34,7 +52,7 @@ export default function ChangePinOld() {
         <p className='text-start fontSize-16 color-7a'>Enter your current 6 digits Zwallet PIN below to<br/> continue to the next steps.</p>
       </div>
       <div className='d-flex flex-column gap-5 mx-auto margin-bottom-pin'>
-        <Formik initialValues={{pin1:'',pin2:'',pin3:'',pin4:'',pin5:'',pin6:'',}} >
+        <Formik initialValues={{pin1:'',pin2:'',pin3:'',pin4:'',pin5:'',pin6:'',}} onSubmit={onOldPin} >
           {(props)=><ChangePinForm {...props}/>}
         </Formik>
       </div>
