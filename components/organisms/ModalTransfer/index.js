@@ -5,6 +5,9 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import PinInputOne from '../../molecules/inputPinOne'
+import axios from '../../../helper/axios';
+import { useDispatch, useSelector } from 'react-redux'
+import cookies from 'next-cookies'
 
 const pinTransfer = Yup.object().shape({
   pin: Yup.array().of(
@@ -23,12 +26,12 @@ const PinForm = ({errors, handleSubmit, handleChange}) => {
         </p>
         <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4'>
           <div className='d-flex flex-row justify-content-center gap-1 mw-100 h-auto'>
-            <PinInputOne name={`pin[${0}]`} type='text' />
-            <PinInputOne name={`pin[${1}]`} type='text' />
-            <PinInputOne name={`pin[${2}]`} type='text' />
-            <PinInputOne name={`pin[${3}]`} type='text' />
-            <PinInputOne name={`pin[${4}]`} type='text' />
-            <PinInputOne name={`pin[${5}]`} type='text' />
+          <PinInputOne name='pin1' type='text' />
+          <PinInputOne name='pin2' type='text' />
+          <PinInputOne name='pin3' type='text' />
+          <PinInputOne name='pin4' type='text' />
+          <PinInputOne name='pin5' type='text' />
+          <PinInputOne name='pin6' type='text' />
           </div>
           <span>{errors.pin}</span>
           <div className="d-flex justify-content-end">
@@ -56,6 +59,42 @@ function MyVerticallyCenteredModal(props) {
   //     navigate('/transferfailed')
   //   }
   // }
+  const idUser = useSelector((state) => state?.TransferValues?.idUser)
+  const dataNotes = useSelector((state) => state?.TransferValues?.notes)
+  const dataAmount = useSelector((state) => state?.TransferValues?.amount)
+  console.log(idUser);
+  console.log(idUser);
+  console.log(idUser);
+  const onTransfer = async (value) => {
+    try {
+      const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
+      const result = await axios.get(`/user/pin?pin=${fullPin}`)
+      window.alert(result.data.msg)
+      // if (result.data.msg == 'Correct pin') {
+      //     console.log('aaaaaaaaa');
+      //     const data = {receiverId: idUser, amount: dataAmount, notes: dataNotes}
+      //     console.log(data);
+      //     const result2 = await axios.post('/transaction/transfer', data)
+      //     window.alert(result2.data.msg)
+      // }
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
+  }
+  const onTransfer2 = async () => {
+    try {
+      console.log('aaaaaaaaa');
+      const data = {receiverId: idUser, amount: dataAmount, notes: dataNotes}
+      console.log(data);
+      const result2 = await axios.post('/transaction/transfer', data)
+      window.alert(result2.data.msg)
+    } catch (e) {
+      console.log(e.response);
+      window.alert(e.response.data.msg)
+    }
+  }
+
   return (
     <Modal
       {...props}
@@ -68,7 +107,7 @@ function MyVerticallyCenteredModal(props) {
                 Enter PIN to Transfer
         </Modal.Title>
       </Modal.Header>
-      <Formik initialValues={{pin: ['']}} validationSchema={pinTransfer} >
+      <Formik initialValues={{pin1:'',pin2:'',pin3:'',pin4:'',pin5:'',pin6:'',}} onSubmit={onTransfer, onTransfer2} >
         {(props)=><PinForm {...props}/>}
       </Formik>
     </Modal>

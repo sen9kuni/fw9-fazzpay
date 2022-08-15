@@ -45,11 +45,11 @@ export default function Home() {
             <Col className='d-flex flex-row justify-content-between align-items-center balance-wrap p-4 rounded background-primary'>
               <div className="d-flex flex-column gap-1">
                 <span className="fw-normal fontSize-18 color-Thrid">Balance</span>
-                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(data.balance))}</span>
-                <span className="fontMid fontSize-14 color-Thrid">{data.noTelp}</span>
+                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(data?.balance))}</span>
+                <span className="fontMid fontSize-14 color-Thrid">{data?.noTelp}</span>
               </div>
               <div className="d-flex flex-column gap-2">
-                <Link href='#'>
+                <Link href='/search-recevier'>
                   <a className='d-grid text-decoration-none'>
                     <button className="btn btn-lg btn-outline-light bg-f3 d-flex align-items-center">
                       <FiArrowUp size={25} />
@@ -91,7 +91,7 @@ export default function Home() {
               <Col md={5} className='rounded shadow-sm p-3 bg-white'>
                 <div className="d-flex flex-row justify-content-between p-3">
                   <span className="fw-bold fontSize-18">Transaction History</span>
-                  <Link href='#'>
+                  <Link href='/history'>
                     <a className="d-grid text-decoration-none">
                       <span className='font-med fontSize-14 colorPrimary'>See all</span>
                     </a>

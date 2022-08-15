@@ -99,6 +99,11 @@ body .body-dashboard{
     height: 70px;
 }
 
+.image-frame-profile-history {
+    width: 56px;
+    height: 56px;
+}
+
 
 /* color/bg */
 .colorIn {

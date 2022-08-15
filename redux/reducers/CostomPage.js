@@ -13,13 +13,17 @@ export const CostomPage = createSlice({
     },
     costomPagesMinus: (state, action) => {
       state.page = state.page - 1
+    },
+    costomPagesReset: (state) => {
+      state.page = 1
     }
   }
 })
 
 export const {
   costomPagesPlus,
-  costomPagesMinus
+  costomPagesMinus,
+  costomPagesReset
 } = CostomPage.actions
 
 export default CostomPage.reducer;

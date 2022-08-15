@@ -8,7 +8,7 @@ import cookies from 'next-cookies';
 import Router, { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
-import { costomPagesMinus, costomPagesPlus } from '../../redux/reducers/CostomPage';
+import { costomPagesMinus, costomPagesPlus, costomPagesReset } from '../../redux/reducers/CostomPage';
 import Cookies from 'js-cookie';
 import { Formik } from 'formik';
 
@@ -63,6 +63,7 @@ export default function SearchReceiver(props) {
   }
 
   const onSearch = (value)=> {
+    dispatch(costomPagesReset())
     const search = value.search
     if (search) {
       const page = 1
@@ -91,7 +92,7 @@ export default function SearchReceiver(props) {
               {props?.dataUsers?.map((o) => {
                 if (o.id !== Cookies.get('id')) {
                   return (
-                    <ListProfile key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} phone={o.noTelp} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+                    <ListProfile link={'/input-amount'} id={o.id} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} phone={o.noTelp} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
                   )
                 } else {
                   null

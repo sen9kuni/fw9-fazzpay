@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import CostomPage from './CostomPage';
+import TransferValues from './TransferValues';
 
 const reducer = combineReducers({
-  CostomPage
+  CostomPage,
+  TransferValues
 })
 
 export default reducer
