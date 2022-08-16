@@ -21,9 +21,9 @@ const ChangePinForm = ({errors, handleSubmit, handleChange}) => {
       </div>
       <span>{errors.pin}</span>
       {/* <Link href='/sign-up/create-pin/success'> */}
-        <Button type="submit" className='d-flex background-primary p-3 justify-content-center border-unset fw-bold fontSize-16 colorWhite'>
+      <Button type="submit" className='d-flex background-primary p-3 justify-content-center border-unset fw-bold fontSize-16 colorWhite'>
         Change PIN
-        </Button>
+      </Button>
       {/* </Link> */}
     </Form>
   )

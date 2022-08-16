@@ -65,90 +65,90 @@ export default function Home() {
   if (isLoading) return <LoadingImage/>
   return (
     <div className='body-dashboard'>
-        <ComHeadaer />
-        <Container className='d-flex flex-column flex-md-row py-5 gap-3'>
-          <ComMenuMobile />
-          <ComMenu />
-          <Col md={9} className='d-flex flex-column colorWhite gap-3'>
-            <Col className='d-flex flex-row justify-content-between align-items-center balance-wrap p-4 rounded background-primary'>
-              <div className="d-flex flex-column gap-1">
-                <span className="fw-normal fontSize-18 color-Thrid">Balance</span>
-                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(profile?.balance))}</span>
-                <span className="fontMid fontSize-14 color-Thrid">{profile?.noTelp}</span>
+      <ComHeadaer />
+      <Container className='d-flex flex-column flex-md-row py-5 gap-3'>
+        <ComMenuMobile />
+        <ComMenu />
+        <Col md={9} className='d-flex flex-column colorWhite gap-3'>
+          <Col className='d-flex flex-row justify-content-between align-items-center balance-wrap p-4 rounded background-primary'>
+            <div className="d-flex flex-column gap-1">
+              <span className="fw-normal fontSize-18 color-Thrid">Balance</span>
+              <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(profile?.balance))}</span>
+              <span className="fontMid fontSize-14 color-Thrid">{profile?.noTelp}</span>
+            </div>
+            <div className="d-flex flex-column gap-2">
+              <Link href='/search-recevier'>
+                <a className='d-grid text-decoration-none'>
+                  <button className="btn btn-lg btn-outline-light bg-f3 d-flex align-items-center">
+                    <FiArrowUp size={25} />
+                    <span className="fw-bold fontSize-18 ">Transfer</span>
+                  </button>
+                </a>
+              </Link>
+              <Link href='#'>
+                <a className='d-grid text-decoration-none'>
+                  <button className="btn btn-lg btn-outline-light bg-f3 d-flex align-items-center">
+                    <FiPlus size={25} />
+                    <span className="fw-bold fontSize-18 ">Top Up</span>
+                  </button>
+                </a>
+              </Link>
+            </div>
+          </Col>
+
+          <Col className='colorSecondary d-flex flex-column flex-md-row gap-3'>
+            <Col md={7} className='rounded shadow-sm p-4 bg-white'>
+              <div className="d-flex flex-row justify-content-between">
+                <div className="d-flex flex-column gap-2">
+                  <FiArrowDown size={28} className='colorIn' />
+                  <span className="fw-normal fontSize-14">Income</span>
+                  <span className="fw-bold fontSize-18">Rp2.120.000</span>
+                </div>
+                <div className="d-flex flex-column gap-2">
+                  <FiArrowUp size={28} className='colorOut' />
+                  <span className="fw-normal fontSize-14">Expense</span>
+                  <span className="fw-bold fontSize-18">Rp1.560.000</span>
+                </div>
               </div>
-              <div className="d-flex flex-column gap-2">
-                <Link href='/search-recevier'>
-                  <a className='d-grid text-decoration-none'>
-                    <button className="btn btn-lg btn-outline-light bg-f3 d-flex align-items-center">
-                      <FiArrowUp size={25} />
-                      <span className="fw-bold fontSize-18 ">Transfer</span>
-                    </button>
-                  </a>
-                </Link>
-                <Link href='#'>
-                  <a className='d-grid text-decoration-none'>
-                    <button className="btn btn-lg btn-outline-light bg-f3 d-flex align-items-center">
-                      <FiPlus size={25} />
-                      <span className="fw-bold fontSize-18 ">Top Up</span>
-                    </button>
-                  </a>
-                </Link>
+              <div className="d-flex justify-content-center mt-5">
+                {/* <img className='img-fluid' src={GraphicPic} alt="graphic"/> */}
+                <Image src='/images/graphic.svg' width={341} height={268} alt='grapic money' />
               </div>
             </Col>
 
-            <Col className='colorSecondary d-flex flex-column flex-md-row gap-3'>
-              <Col md={7} className='rounded shadow-sm p-4 bg-white'>
-                <div className="d-flex flex-row justify-content-between">
-                  <div className="d-flex flex-column gap-2">
-                    <FiArrowDown size={28} className='colorIn' />
-                    <span className="fw-normal fontSize-14">Income</span>
-                    <span className="fw-bold fontSize-18">Rp2.120.000</span>
-                  </div>
-                  <div className="d-flex flex-column gap-2">
-                    <FiArrowUp size={28} className='colorOut' />
-                    <span className="fw-normal fontSize-14">Expense</span>
-                    <span className="fw-bold fontSize-18">Rp1.560.000</span>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-center mt-5">
-                  {/* <img className='img-fluid' src={GraphicPic} alt="graphic"/> */}
-                  <Image src='/images/graphic.svg' width={341} height={268} alt='grapic money' />
-                </div>
-              </Col>
-
-              <Col md={5} className='rounded shadow-sm p-3 bg-white'>
-                <div className="d-flex flex-row justify-content-between p-3">
-                  <span className="fw-bold fontSize-18">Transaction History</span>
-                  <Link href='/history'>
-                    <a className="d-grid text-decoration-none">
-                      <span className='font-med fontSize-14 colorPrimary'>See all</span>
-                    </a>
-                  </Link> 
-                </div>
-                {/* <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
+            <Col md={5} className='rounded shadow-sm p-3 bg-white'>
+              <div className="d-flex flex-row justify-content-between p-3">
+                <span className="fw-bold fontSize-18">Transaction History</span>
+                <Link href='/history'>
+                  <a className="d-grid text-decoration-none">
+                    <span className='font-med fontSize-14 colorPrimary'>See all</span>
+                  </a>
+                </Link> 
+              </div>
+              {/* <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  /> */}
-                {historyHome?.map((o)=> {
-                  if (o.type == 'accept') {
-                    return (
-                      <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                    )
-                  } else if (o.type == 'topup') {
-                    return (
-                      <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                    )
-                  } else {
-                    return (
-                      <ListHistoryExpense typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                    )
-                  }
-                })}
-              </Col>
+              {historyHome?.map((o)=> {
+                if (o.type == 'accept') {
+                  return (
+                    <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+                  )
+                } else if (o.type == 'topup') {
+                  return (
+                    <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+                  )
+                } else {
+                  return (
+                    <ListHistoryExpense typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+                  )
+                }
+              })}
             </Col>
           </Col>
-        </Container>
-        <ComFooter />
-      </div>
+        </Col>
+      </Container>
+      <ComFooter />
+    </div>
   )
 }

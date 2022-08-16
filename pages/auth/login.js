@@ -44,7 +44,7 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
       <div className="text-end">
         <Link href='/reset-password'>
           <a className="link-secondary text-decoration-none fontMid">
-          <span>Forgot password?</span>
+            <span>Forgot password?</span>
           </a>
         </Link>
       </div>
@@ -76,7 +76,7 @@ export default function Login() {
       dispatch(login(value))
       if (Cookies.get('token') !== null) {
         setTimeout(() => {
-        navigate.push('/home')
+          navigate.push('/home')
         }, 1000)
       }
     } catch (e) {
@@ -86,19 +86,19 @@ export default function Login() {
   }
   return (
     <>
-    <Head>
-      <title>FazzPay - login</title>
-    </Head>
+      <Head>
+        <title>FazzPay - login</title>
+      </Head>
       <LogoDashboard />
       <Row className='min-vh-100 mw-100'>
         <DashboardRight />
-      <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>
-        <h3 className="text-start fs-3 fw-bold colorSecondary">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</h3>
-        <p className="text-start fw-normal text-muted">Transfering money is eassier than ever, you can access <br/> Zwallet wherever you are. Desktop, laptop, mobile phone? <br/> we cover all of that for you!</p>
-        <Formik initialValues={{email: '', password: ''}} validationSchema={loginSechema} onSubmit={handleLogin}>
-          {(props)=><AuthForm {...props}/>}
-        </Formik>
-      </Col>
+        <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>
+          <h3 className="text-start fs-3 fw-bold colorSecondary">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</h3>
+          <p className="text-start fw-normal text-muted">Transfering money is eassier than ever, you can access <br/> Zwallet wherever you are. Desktop, laptop, mobile phone? <br/> we cover all of that for you!</p>
+          <Formik initialValues={{email: '', password: ''}} validationSchema={loginSechema} onSubmit={handleLogin}>
+            {(props)=><AuthForm {...props}/>}
+          </Formik>
+        </Col>
       </Row>
     </>
   )

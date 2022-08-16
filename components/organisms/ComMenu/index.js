@@ -1,7 +1,7 @@
 import React from 'react'
 import {FiGrid, FiPlus, FiArrowUp, FiUser, FiLogOut} from 'react-icons/fi'
 import {Row, Col, Form, Button} from 'react-bootstrap'
-import Link from "next/link"
+import Link from 'next/link'
 import ModalTopup from '../ModalTopup'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
@@ -52,10 +52,10 @@ export default function ComMenu() {
         </div>
         <div className="navButton mt-auto">
           {/* <Button className='bg-transparent'> */}
-            <a onClick={onLogout} className="d-flex flex-row gap-3 align-items-center text-decoration-none">
-              <FiLogOut size={28} />
-              <span className="fw-bold">Logout</span>
-            </a>
+          <a onClick={onLogout} className="d-flex flex-row gap-3 align-items-center text-decoration-none">
+            <FiLogOut size={28} />
+            <span className="fw-bold">Logout</span>
+          </a>
           {/* </Button> */}
         </div>
       </div>

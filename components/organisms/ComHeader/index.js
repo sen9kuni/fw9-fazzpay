@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, Dropdown } from 'react-bootstrap'
 import {FiBell, FiArrowDown, FiArrowUp} from 'react-icons/fi'
-import Link from "next/link"
+import Link from 'next/link'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
 import axios from '../../../helper/axios'
@@ -31,7 +31,7 @@ export default function ComHeadaer() {
   // }
   return (
     <>
-    <Row className='d-flex flex-column flex-md-row align-items-md-center mw-100 m-0 shadow-sm round-bott bg-white'>
+      <Row className='d-flex flex-column flex-md-row align-items-md-center mw-100 m-0 shadow-sm round-bott bg-white'>
         <Col md={6} className='d-md-flex'>
           <div className="d-flex justify-content-start">
             <Link href='/home'>

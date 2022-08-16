@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Nav, Row } from 'react-bootstrap'
 import { FiArrowUp, FiGrid, FiLogOut, FiPlus, FiUser } from 'react-icons/fi'
-import Link from "next/link"
+import Link from 'next/link'
 
 export default function ComMenuMobile() {
   return (

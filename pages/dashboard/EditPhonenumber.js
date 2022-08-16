@@ -50,12 +50,12 @@ export default function EditPhonenumber() {
   return (
     <MainComponent>
       <div className='d-flex flex-column gap-3'>
-            <span className='fw-bold fontSize-22 color-3a'>Edit Phone Number</span>
-            <p className='text-start fontSize-16 color-7a'>Add at least one phone number for the transfer<br/> ID so you can start transfering your money to<br/> another user.</p>
-          </div>
-        <Formik initialValues={{phone: ''}} validationSchema={addPhoneSchema} onSubmit={editPhone}>
-          {(props)=><AuthPhoneForm {...props}/>}
-        </Formik>
+        <span className='fw-bold fontSize-22 color-3a'>Edit Phone Number</span>
+        <p className='text-start fontSize-16 color-7a'>Add at least one phone number for the transfer<br/> ID so you can start transfering your money to<br/> another user.</p>
+      </div>
+      <Formik initialValues={{phone: ''}} validationSchema={addPhoneSchema} onSubmit={editPhone}>
+        {(props)=><AuthPhoneForm {...props}/>}
+      </Formik>
     </MainComponent>
   )
 }

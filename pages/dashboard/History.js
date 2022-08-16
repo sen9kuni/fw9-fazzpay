@@ -95,56 +95,25 @@ export default function History(props) {
           </Formik>
         </div>
       </div>
-            {/* <div>
-              <span className='color-7a font-Size-16'>This Week</span>
-              <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-              <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-            </div>
-            <div>
-              <span className='color-7a font-Size-16'>This Month</span>
-              <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-              <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-            </div> */}
-            {/* <div>
-              {history?.results?.map((o) => {
-                if(o.type === 'transfer' && o.sender === 'dummy') {
-                  return (
-                    <ListHistoryExpense image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
-                  )
-                } else if (o.type === 'transfer' && o.receiver === 'dummy') {
-                  return (
-                    <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.sender} typeTransfer={o.type} amount={numberFormat(o.amount)} />
-                  )
-                } else if (o.type === 'top up') {
-                  return (
-                    <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
-                  )
-                } else {
-                  return (
-                    <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
-                  )
-                }
-              })}
-            </div> */}
-            {props?.dataHistory?.map((o) => {
-              if (o.type == 'accept') {
-                return (
-                  <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                )
-              } else if (o.type == 'topup') {
-                return (
-                  <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                )
-              } else {
-                return (
-                  <ListHistoryExpense typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
-                )
-              }
-            })}
-            <div className='d-flex flex-row justify-content-between'>
-              <Button className='col-5 background-primary border-0 shadow-none' disabled={props.allData.pagination.page <= 1? true : false} onClick={prevPage} >Prev</Button>
-              <Button className='col-5 background-primary border-0 shadow-none' disabled={props.allData.pagination.page == props.allData.pagination.totalPage? true : false} onClick={nextPage} >Next</Button>
-            </div>
+      {props?.dataHistory?.map((o) => {
+        if (o.type == 'accept') {
+          return (
+            <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+          )
+        } else if (o.type == 'topup') {
+          return (
+            <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+          )
+        } else {
+          return (
+            <ListHistoryExpense typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
+          )
+        }
+      })}
+      <div className='d-flex flex-row justify-content-between'>
+        <Button className='col-5 background-primary border-0 shadow-none' disabled={props.allData.pagination.page <= 1? true : false} onClick={prevPage} >Prev</Button>
+        <Button className='col-5 background-primary border-0 shadow-none' disabled={props.allData.pagination.page == props.allData.pagination.totalPage? true : false} onClick={nextPage} >Next</Button>
+      </div>
     </MainComponent>
   )
 }

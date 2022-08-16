@@ -26,12 +26,12 @@ const PinForm = ({errors, handleSubmit, handleChange}) => {
         </p>
         <Form noValidate onSubmit={handleSubmit} onChange={handleChange} className='d-flex flex-column gap-4'>
           <div className='d-flex flex-row justify-content-center gap-1 mw-100 h-auto'>
-          <PinInputOne name='pin1' type='text' />
-          <PinInputOne name='pin2' type='text' />
-          <PinInputOne name='pin3' type='text' />
-          <PinInputOne name='pin4' type='text' />
-          <PinInputOne name='pin5' type='text' />
-          <PinInputOne name='pin6' type='text' />
+            <PinInputOne name='pin1' type='text' />
+            <PinInputOne name='pin2' type='text' />
+            <PinInputOne name='pin3' type='text' />
+            <PinInputOne name='pin4' type='text' />
+            <PinInputOne name='pin5' type='text' />
+            <PinInputOne name='pin6' type='text' />
           </div>
           <span>{errors.pin}</span>
           <div className="d-flex justify-content-end">

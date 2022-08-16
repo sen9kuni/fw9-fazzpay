@@ -1,6 +1,6 @@
 import React from 'react'
 import {Col} from 'react-bootstrap'
-import Link from "next/link"
+import Link from 'next/link'
 import Image from 'next/image'
 
 export default function DashboardRight() {
@@ -9,9 +9,9 @@ export default function DashboardRight() {
       <div className="d-flex flex-column m-auto">
         <Link href='/'>
           <a className="text-decoration-none">
-          <div className='d-flex justify-content-start'>
-            <span className="fs-2 fw-bold colorWhite">FazzPay</span>
-          </div>
+            <div className='d-flex justify-content-start'>
+              <span className="fs-2 fw-bold colorWhite">FazzPay</span>
+            </div>
           </a>
         </Link>
         <div>

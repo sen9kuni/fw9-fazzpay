@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 import {FiPlus} from 'react-icons/fi'
 import {Col} from 'react-bootstrap'
-import Link from "next/link"
+import Link from 'next/link'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useRouter } from 'next/router'
@@ -65,7 +65,7 @@ function ModalMenuTopUp(props) {
         Enter the amount of money, and click<br/> submit
         </p>
         <Formik initialValues={{amount: ''}} validationSchema={topupSechema} onSubmit={hendleTopup}>
-        {(props)=><TopUpForm {...props}/>}
+          {(props)=><TopUpForm {...props}/>}
         </Formik>
       </Modal.Body>
       {/* <Modal.Footer>
@@ -80,10 +80,10 @@ export default function ModalTopup() {
   return (
     <>
       <div className="navButton">
-          <a className="d-flex flex-row gap-3 align-items-center text-decoration-none"  onClick={() => setModalShow(true)}>
-            <FiPlus size={28} />
-            <span className="fw-bold">Top Up</span>
-          </a>
+        <a className="d-flex flex-row gap-3 align-items-center text-decoration-none"  onClick={() => setModalShow(true)}>
+          <FiPlus size={28} />
+          <span className="fw-bold">Top Up</span>
+        </a>
       </div>
       <ModalMenuTopUp show={modalShow} onHide={() => setModalShow(false)}/>
     </>

@@ -37,9 +37,9 @@ const AuthForm = ({errors, handleSubmit, handleChange})=>{
     }
   }
   // (event) => {
-    // if (event.target.value > data?.balance ) {
-    //   setBtnSub(true)
-    // }
+  // if (event.target.value > data?.balance ) {
+  //   setBtnSub(true)
+  // }
   // }
   console.log(btnSub);
   return (

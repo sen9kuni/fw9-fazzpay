@@ -91,7 +91,7 @@ export default function EditProfile() {
         </Form>
         <div className='d-flex justify-content-center'>
           <Formik initialValues={{firstName: '', lastName: ''}} onSubmit={editProfileBtn }>
-              {(props)=><EditForm {...props}/>}
+            {(props)=><EditForm {...props}/>}
           </Formik>
         </div>
       </div>

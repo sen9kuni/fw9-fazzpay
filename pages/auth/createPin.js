@@ -23,9 +23,9 @@ const CreatePinForm = ({errors, handleSubmit, handleChange}) => {
       </div>
       <span>{errors.pin}</span>
       {/* <Link href='/sign-up/create-pin/success'> */}
-        <Button type="submit" className='d-flex background-primary p-3 justify-content-center border-unset fw-bold fontSize-16 colorWhite mt-5'>
+      <Button type="submit" className='d-flex background-primary p-3 justify-content-center border-unset fw-bold fontSize-16 colorWhite mt-5'>
         Continue
-        </Button>
+      </Button>
       {/* </Link> */}
     </Form>
   )
@@ -48,7 +48,7 @@ export default function CreatePin() {
   }
   return (
     <>
-    <LogoDashboard />
+      <LogoDashboard />
       <Row className='min-vh-100 mw-100'>
         <DashboardRight />
 

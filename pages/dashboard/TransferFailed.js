@@ -4,7 +4,7 @@ import {Container, Col} from 'react-bootstrap'
 import MainComponent from '../../components/organisms/MainComponent'
 import ListProfile from '../../components/molecules/ListProfile'
 import ListInfo from '../../components/molecules/ListInfo'
-import Link from "next/link"
+import Link from 'next/link'
 
 export default function TransferFailed() {
   return (

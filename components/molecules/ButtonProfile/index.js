@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import Link from "next/link"
+import Link from 'next/link'
 export default function ButtonProfile({target, text, logo }) {
   return (
     <Link href={target}>

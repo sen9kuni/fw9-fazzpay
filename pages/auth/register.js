@@ -73,10 +73,10 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
 export default function Register() {
   return (
     <>
-    <Head>
-      <title>FazzPay - sign up</title>
-    </Head>
-    <LogoDashboard />
+      <Head>
+        <title>FazzPay - sign up</title>
+      </Head>
+      <LogoDashboard />
       <Row className='min-vh-100 mw-100'>
         <DashboardRight />
         <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>

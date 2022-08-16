@@ -8,7 +8,7 @@ import DashboardRight from '../../components/organisms/DashboardRight'
 export default function pinSuccess() {
   return (
     <>
-    <LogoDashboard />
+      <LogoDashboard />
       <Row className='min-vh-100 mw-100'>
         <DashboardRight />
         <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>

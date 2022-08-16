@@ -80,14 +80,14 @@ export default function ChangePassword() {
   return (
     <MainComponent>
       <div className='d-flex flex-column gap-3'>
-              <span className='fw-bold fontSize-22 color-3a'>Change Password</span>
-              <p className='text-start fontSize-16 color-7a'>You must enter your current password and then<br /> type your new password twice.</p>
-            </div>
-            <div className='d-flex flex-column gap-5 w-50 mx-auto'>
-              <Formik initialValues={{currentPassword: '', newPassword: '', repeatNewPassword: ''}} validationSchema={createNewPassSechema} onSubmit={onChangePassword}>
-                {(props)=><AuthForm {...props}/>}
-              </Formik>
-            </div>
+        <span className='fw-bold fontSize-22 color-3a'>Change Password</span>
+        <p className='text-start fontSize-16 color-7a'>You must enter your current password and then<br /> type your new password twice.</p>
+      </div>
+      <div className='d-flex flex-column gap-5 w-50 mx-auto'>
+        <Formik initialValues={{currentPassword: '', newPassword: '', repeatNewPassword: ''}} validationSchema={createNewPassSechema} onSubmit={onChangePassword}>
+          {(props)=><AuthForm {...props}/>}
+        </Formik>
+      </div>
     </MainComponent>
   )
 }

@@ -46,7 +46,7 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
 export default function resetPassword() {
   return (
     <>
-    <LogoDashboard />
+      <LogoDashboard />
       <Row className='min-vh-100 mw-100'>
         <DashboardRight />
 
