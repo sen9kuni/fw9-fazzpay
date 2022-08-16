@@ -12,6 +12,10 @@ import axios from '../../helper/axios'
 import Image from 'next/image'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
+import LoadingImage from '../../components/atoms/LoadingImage'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../../redux/action/profile'
+import { getHistoryHome } from '../../redux/action/authUser'
 
 export const numberFormat = (value) =>
   new Intl.NumberFormat('id-IN', {
@@ -21,20 +25,44 @@ export const numberFormat = (value) =>
 
 // csr
 export default function Home() {
-  const navigate = useRouter()
-  const [data, setData] = useState({})
+  // const navigate = useRouter()
+  // const [data, setData] = useState({})
+  // useEffect(()=> {
+  //   getDatauser()
+  // }, [])
+  // const getDatauser =  async() => {
+  //   try {
+  //     const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
+  //     setData(result.data.data)
+  //     // console.log(result.data.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
+  const dispatch = useDispatch()
+  const [isLoading, setLoading] = useState(true)
+  const historyHome = useSelector((state) => state.authUser.historyHome)
+  // const [isLoading, setLoading] = useState(true)
   useEffect(()=> {
-    getDatauser()
-  }, [])
-  const getDatauser =  async() => {
-    try {
-      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
-      setData(result.data.data)
-      // console.log(result.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+    // getDatauser()
+    console.log(Cookies.get('id'));
+    setTimeout(() => {
+      dispatch(getProfile(Cookies.get('id')))
+      dispatch(getHistoryHome())
+      setLoading(false)
+    }, 500);
+  }, [dispatch])
+  // const getDatauser =  async() => {
+  //   try {
+  //     await dispatch(getProfile(Cookies.get('id')))
+  //     setLoading(false)
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
+  const profile = useSelector((state) => state.profile.data)
+  console.log(historyHome);
+  if (isLoading) return <LoadingImage/>
   return (
     <div className='body-dashboard'>
         <ComHeadaer />
@@ -45,8 +73,8 @@ export default function Home() {
             <Col className='d-flex flex-row justify-content-between align-items-center balance-wrap p-4 rounded background-primary'>
               <div className="d-flex flex-column gap-1">
                 <span className="fw-normal fontSize-18 color-Thrid">Balance</span>
-                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(data?.balance))}</span>
-                <span className="fontMid fontSize-14 color-Thrid">{data?.noTelp}</span>
+                <span className="fs-1 fw-bold fontWhite">{numberFormat(parseInt(profile?.balance))}</span>
+                <span className="fontMid fontSize-14 color-Thrid">{profile?.noTelp}</span>
               </div>
               <div className="d-flex flex-column gap-2">
                 <Link href='/search-recevier'>
@@ -97,35 +125,25 @@ export default function Home() {
                     </a>
                   </Link> 
                 </div>
-                <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
+                {/* <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
                 <ListHistoryIncome alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-                <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  />
-                {/* {data.map((o)=> (
-                  <div key={o.id}>
-                    <h5 className='color-3a'>{o.firstName}</h5>
-                  </div>
-                ))} */}
-                {/* {history?.results?.map((o) => {
-                  if(o.type === 'transfer' && o.sender === 'dummy') {
+                <ListHistoryExpense alt='Profile Pic' nameUser='budi' typeTransfer='transfer' amount='50.000'  /> */}
+                {historyHome?.map((o)=> {
+                  if (o.type == 'accept') {
                     return (
-                      <ListHistoryExpense image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
+                      <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
                     )
-                  } else if (o.type === 'transfer' && o.receiver === 'dummy') {
+                  } else if (o.type == 'topup') {
                     return (
-                      <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.sender} typeTransfer={o.type} amount={numberFormat(o.amount)} />
-                    )
-                  } else if (o.type === 'top up') {
-                    return (
-                      <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
+                      <ListHistoryIncome typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
                     )
                   } else {
                     return (
-                      <ListHistoryIncome image={ProfileSam} alt='profile pic' nameUser={o.receiver} typeTransfer={o.type} amount={numberFormat(o.amount)} />
+                      <ListHistoryExpense typeTransfer={o.type} key={o.id} alt={o.firstName} nameUser={`${o.firstName} ${o.lastName}`} amount={numberFormat(o.amount)} image={o.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${o?.image}` : '/images/sam.png'} />
                     )
                   }
-                })} */}
-                {/* <Image src={'https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/Fazzpay/bqz00rnxwa1mzwqmudyh.jpg'} width={100} height={100} alt='ayam' /> */}
+                })}
               </Col>
             </Col>
           </Col>

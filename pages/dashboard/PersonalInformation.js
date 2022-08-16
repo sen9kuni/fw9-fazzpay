@@ -5,20 +5,20 @@ import ListInfo from '../../components/molecules/ListInfo'
 import axios from '../../helper/axios'
 import Cookies from 'js-cookie'
 import LoadingImage from '../../components/atoms/LoadingImage'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../../redux/action/profile'
 
 export default function PersonalInformation() {
-  const [data, setData] = useState({})
-  const [isLoading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  const profile = useSelector((state) => state.profile.data)
+  const [isLoading, setLoading] = useState(true)
   useEffect(()=> {
     getDatauser()
   }, [])
   const getDatauser =  async() => {
-    setLoading(true)
     try {
-      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
-      setData(result.data.data)
+      await dispatch(getProfile(Cookies.get('id')))
       setLoading(false)
-      console.log(result.data.data);
     } catch (e) {
       console.log(e);
     }
@@ -31,10 +31,10 @@ export default function PersonalInformation() {
         <p className='text-start fontSize-16 color-7a'>We got your personal information from the sign<br/> up proccess. If you want to make changes on<br/> your information, contact our support.</p>
       </div>
       <div className='d-flex flex-column gap-4'>
-        <ListInfo titleInfo='First Name' info={data.firstName} />
-        <ListInfo titleInfo='Last Name' info={data.lastName} />
-        <ListInfo titleInfo='Verified E-mail' info={data.email} />
-        <ListInfo titleInfo='Phone Number' info={data.noTelp} linkTo={<Link href='/profile/edit-phone-number'><a className='text-decoration-none fontMid colorPrimary'>Manage</a></Link>} />
+        <ListInfo titleInfo='First Name' info={profile.firstName} />
+        <ListInfo titleInfo='Last Name' info={profile.lastName} />
+        <ListInfo titleInfo='Verified E-mail' info={profile.email} />
+        <ListInfo titleInfo='Phone Number' info={profile.noTelp} linkTo={<Link href='/profile/edit-phone-number'><a className='text-decoration-none fontMid colorPrimary'>Manage</a></Link>} />
       </div>
     </MainComponent>
   )

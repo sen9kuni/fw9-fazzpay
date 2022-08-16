@@ -22,6 +22,7 @@ export const numberFormat = (value) =>
   }).format(value);
 
 const AuthForm = ({errors, handleSubmit, handleChange})=>{
+  const [btnSub, setBtnSub] = useState(false)
   const [data, setData] = useState({})
   useEffect(()=> {
     getDatauser()
@@ -35,12 +36,23 @@ const AuthForm = ({errors, handleSubmit, handleChange})=>{
       console.log(e);
     }
   }
-  
+  // (event) => {
+    // if (event.target.value > data?.balance ) {
+    //   setBtnSub(true)
+    // }
+  // }
+  console.log(btnSub);
   return (
     <Form noValidate onSubmit={handleSubmit} className='d-flex flex-column gap-5 text-center justify-content-center'>
       <p className='text-start color-7a'>Type the amount you want to transfer and then <br/> press continue to the next steps.</p>
-      <Form.Group className="flex-nowrap amoutWarp text-center">
-        <Form.Control name='amount' className='border-0 shadow-none' onChange={handleChange} type="number" placeholder="0.00" isInvalid={!!errors.amount} />
+      <Form.Group className="flex-nowrap amoutWarp text-center" onChange={handleChange}>
+        <Form.Control name='amount' className='border-0 shadow-none' onChange={(event)=> {
+          if (event.target.value > data?.balance ) {
+            setBtnSub(true)
+          } else {
+            setBtnSub(false)
+          }
+        }} type="number" placeholder="0.00" isInvalid={!!errors.amount} />
         <Form.Control.Feedback type='invalid'>{errors.amount}</Form.Control.Feedback>
       </Form.Group>
       <div>
@@ -57,7 +69,7 @@ const AuthForm = ({errors, handleSubmit, handleChange})=>{
       </div>
 
       <div className="d-flex justify-content-end">
-        <Button type="submit" className="btn btn-lg DashbuttonLogin fw-bold colorWhite">
+        <Button disabled={btnSub} type="submit" className="btn btn-lg DashbuttonLogin fw-bold colorWhite">
         Continue
         </Button>
       </div>

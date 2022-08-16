@@ -10,6 +10,8 @@ import {FiMail, FiLock} from 'react-icons/fi'
 import axios from '../../helper/axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { login } from '../../redux/action/authUser'
 
 const loginSechema  = Yup.object().shape({
   email: Yup.string().email('Invalid email address format').required(),
@@ -59,14 +61,23 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
 }
 
 export default function Login() {
+  const dispatch = useDispatch()
   const navigate = useRouter()
+  // React.useEffect(()=> {
+  //   if (Cookies.get('token') !== null) {
+  //     navigate.push('/home')
+  //   }
+  // },[])
   const handleLogin = async (value) => {
     try {
-      const result = await axios.post('auth/login', value)
-      Cookies.set('token', result.data.data.token)
-      Cookies.set('id', result.data.data.id)
+      // const result = await axios.post('auth/login', value)
+      // Cookies.set('token', result.data.data.token)
+      // Cookies.set('id', result.data.data.id)
+      dispatch(login(value))
       if (Cookies.get('token') !== null) {
+        setTimeout(() => {
         navigate.push('/home')
+        }, 1000)
       }
     } catch (e) {
       console.log(e.response);

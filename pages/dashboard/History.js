@@ -31,9 +31,9 @@ const FilterForm = ({errors, handleSubmit, handleChange})=> {
 export async function getServerSideProps(context) {
   try {
     const dataCookie = cookies(context)
-    const page = !context.query?.page? 1 : context.query.page;
-    const filter = !context.query?.filter? '' : context.query.filter;
-    const users = await axiosServer.get(`/transaction/history?page=${page}&limit=5&filter=${filter}`, {
+    const page = !context.query?.page ? 1 : context.query.page;
+    const filter = !context.query?.filter ? '' : context.query.filter;
+    const users = await axiosServer.get(`/transaction/history?page=${page}&limit=6&filter=${filter}`, {
       headers: {
         Authorization: `Bearer ${dataCookie.token}`
       }
@@ -41,7 +41,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         allData: users.data,
-        dataHistory: users.data.data
+        dataHistory: users.data.data,
+        filterVal: filter
       }
     }
   } catch (e) {
@@ -61,7 +62,7 @@ export default function History(props) {
   const numberPages = useSelector((state)=> state.CostomPage.page)
 
   useEffect(()=> {
-    const filter = 'MONTH'
+    const filter = props.filterVal
     Router.push(`/history?page=${numberPages}&limit=5&filter=${filter}`)
   }, [numberPages])
 

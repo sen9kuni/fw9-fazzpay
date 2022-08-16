@@ -6,33 +6,28 @@ import Image from 'next/image'
 import Cookies from 'js-cookie'
 import axios from '../../../helper/axios'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../../../redux/action/profile'
 
 export default function ComHeadaer() {
+  const dispatch = useDispatch()
   const navigate = useRouter()
-  const [data, setData] = useState({})
+  const profile = useSelector((state) => state.profile?.data)
+  // const [data, setData] = useState({})
   useEffect(()=> {
-    getDatauser()
+    // getDatauser()
     // checkpin()
-  }, [])
-  const getDatauser =  async() => {
-    try {
-      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
-      setData(result.data.data)
-      console.log(result.data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  // const checkpin = async () => {
+    dispatch(getProfile(Cookies.get('id')))
+  }, [dispatch])
+  // console.log(profile);
+  // const getDatauser =  async() => {
   //   try {
-  //     const result2 = await axios.get('/user/pin')
-  //     console.log(result2.data.msg);
+  //     const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
+  //     setData(result.data.data)
+  //     // console.log(result.data.data);
   //   } catch (e) {
-  //     console.log(e.response.data.msg);
-  //     window.alert(e.response.data.msg)
-  //     navigate.push('/auth/create-pin')
+  //     console.log(e);
   //   }
-    
   // }
   return (
     <>
@@ -52,14 +47,14 @@ export default function ComHeadaer() {
               <Link href='/profile'>
                 <a className="text-decoration-none">
                   <div className='image-frame-profile-header rounded-2 overflow-hidden'>
-                    <Image src={data.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${data.image}` : '/images/sam.png'} alt='aaaaaa' height={60} width={60} />
+                    <Image src={profile?.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${profile?.image}` : '/images/sam.png'} alt='aaaaaa' height={60} width={60} />
                   </div>
                 </a>
                 {/* <img className='img-fluid' src={ProfilePic} alt="profile pic"/> */}
               </Link>
               <div className="d-flex flex-column px-2">
-                <span className="fw-bold textProfileName">{data.firstName} {data.lastName}</span>
-                <span className="fw-normal textProfileNumber">{data.noTelp}</span>
+                <span className="fw-bold textProfileName">{profile?.firstName} {profile?.lastName}</span>
+                <span className="fw-normal textProfileNumber">{profile?.noTelp}</span>
               </div>
             </div>
 

@@ -88,6 +88,10 @@ const nextConfig = {
         source: '/profile/edit-phone-number',
         destination: '/dashboard/EditPhonenumber',
       },
+      {
+        source: '/profile/edit-profile',
+        destination: '/dashboard/EditProfile',
+      },
     ]
   },
   images: {

@@ -6,24 +6,30 @@ import Image from 'next/image'
 import axios from '../../helper/axios'
 import Cookies from 'js-cookie'
 import LoadingImage from '../../components/atoms/LoadingImage'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../../redux/action/profile'
+import Link from 'next/link'
 
 export default function Profile() {
-  const [data, setData] = useState({})
-  const [isLoading, setLoading] = useState(false)
+  const dispatch = useDispatch()
+  
+  const [isLoading, setLoading] = useState(true)
   useEffect(()=> {
-    getDatauser()
-  }, [])
-  const getDatauser =  async() => {
-    setLoading(true)
-    try {
-      const result = await axios.get(`/user/profile/${Cookies.get('id')}`)
-      setData(result.data.data)
+    // getDatauser()
+    setTimeout(() => {
+      dispatch(getProfile(Cookies.get('id')))
       setLoading(false)
-      console.log(result.data.data);
+    }, 500);
+  }, [dispatch])
+  const getDatauser =  async() => {
+    try {
+      await dispatch(getProfile(Cookies.get('id')))
+      setLoading(false)
     } catch (e) {
       console.log(e);
     }
   }
+  const profile = useSelector((state) => state.profile.data)
   if (isLoading) return <LoadingImage/>
   return (
     <MainComponent>
@@ -31,16 +37,20 @@ export default function Profile() {
         <div className="d-flex flex-column gap-2">
           {/* <img className="mx-auto" src={ProfilePic} alt="rofile" width="80px" height="80px" /> */}
           <div>
-            <Image className='img-fluid rounded-2 overflow-hidden' height={80} width={80} src={data.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${data.image}` : '/images/sam.png'} alt='aaaaaa' />
+            <Image className='img-fluid rounded-2 overflow-hidden' height={80} width={80} src={profile?.image !== null ? `https://res.cloudinary.com/dd1uwz8eu/image/upload/v1659549135/${profile?.image}` : '/images/sam.png'} alt='aaaaaa' />
           </div>
-          <button className="btn mx-auto d-flex flex-row gap-2 align-middle align-items-center btnEditProfile">
-            <FiEdit2 />
-              Edit
-          </button>
+          <Link href={'/profile/edit-profile'}>
+            <a className='text-decoration-none'>
+              <button className="btn mx-auto d-flex flex-row gap-2 align-middle align-items-center btnEditProfile">
+                <FiEdit2 />
+                  Edit
+              </button>
+            </a>
+          </Link>
         </div>
         <div className="d-flex flex-column gap-2">
-          <span className="fw-bold profileName fontSize-24">{data.firstName} {data.lastName}</span>
-          <span className="fw-normal fontSize-16">{data.noTelp}</span>
+          <span className="fw-bold profileName fontSize-24">{profile?.firstName} {profile?.lastName}</span>
+          <span className="fw-normal fontSize-16">{profile?.noTelp}</span>
         </div>
       </div>
       <div className='d-flex flex-column gap-4 w-50 mx-auto'>

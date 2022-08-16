@@ -31,7 +31,7 @@ axiosApiIntance.interceptors.response.use(function (response) {
   console.log(error.response);
   if (error.response.status === 403) {
     Cookies.remove('token')
-    window.location.href('/login')
+    window.location.href = '/login'
   }
   // =======
   return Promise.reject(error);

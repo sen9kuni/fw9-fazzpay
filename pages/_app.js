@@ -4,12 +4,15 @@ import '../styles/login.css'
 import '../styles/home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
-import { store } from '../redux/store';
+import { store, presistor } from '../redux/store';
+import { PersistGate } from 'redux-persist/integration/react'
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <PersistGate loading={null} persistor={presistor}>
+        <Component {...pageProps} />
+      </PersistGate>
     </Provider>
   )
 }
