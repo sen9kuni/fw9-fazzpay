@@ -6,7 +6,7 @@
 }
 
 .auth-background {
-    background-image: url("../public/images/bgweve2.svg");
+    background-image: url("/images/bgweve2.svg");
     background-repeat: no-repeat;
     background-size: cover;
 }

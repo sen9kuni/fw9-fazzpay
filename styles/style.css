@@ -422,7 +422,7 @@ body{
     }
     header {
         min-height: 100vh; 
-        background: url("../public/images/bgweve.svg"); 
+        background: url("/images/bgweve.svg"); 
         background-repeat: no-repeat; 
         background-size: 40%; 
         background-position: top right; 
