@@ -25,7 +25,7 @@ export const numberFormat = (value) =>
 
 // csr
 export default function Home() {
-  // const navigate = useRouter()
+  const navigate = useRouter()
   // const [data, setData] = useState({})
   // useEffect(()=> {
   //   getDatauser()
@@ -43,15 +43,21 @@ export default function Home() {
   const [isLoading, setLoading] = useState(true)
   const historyHome = useSelector((state) => state.authUser.historyHome)
   // const [isLoading, setLoading] = useState(true)
+  const pin = Cookies.get('pin')
+  console.log(pin);
   useEffect(()=> {
     // getDatauser()
-    console.log(Cookies.get('id'));
-    setTimeout(() => {
-      dispatch(getProfile(Cookies.get('id')))
-      dispatch(getHistoryHome())
-      setLoading(false)
-    }, 500);
-  }, [dispatch])
+    // console.log(Cookies.get('pin'));
+    if (pin === 'null' || pin === undefined || pin === null) {
+      navigate.push('/auth/create-pin')
+    } else {
+      setTimeout(() => {
+        dispatch(getProfile(Cookies.get('id')))
+        dispatch(getHistoryHome())
+        setLoading(false)
+      }, 500);
+    }
+  }, [dispatch, navigate, pin])
   // const getDatauser =  async() => {
   //   try {
   //     await dispatch(getProfile(Cookies.get('id')))
@@ -61,7 +67,7 @@ export default function Home() {
   //   }
   // }
   const profile = useSelector((state) => state.profile.data)
-  console.log(historyHome);
+  // console.log(historyHome);
   if (isLoading) return <LoadingImage/>
   return (
     <div className='body-dashboard'>

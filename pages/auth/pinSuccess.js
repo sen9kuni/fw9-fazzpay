@@ -16,7 +16,7 @@ export default function pinSuccess() {
             <FiCheck size={50} className='colorWhite'/>
           </div>
           <h3 className="text-start fs-3 fw-bold colorSecondary">Your PIN Was Successfully Created</h3>
-          <p className="text-start fw-normal text-muted">Your PIN was successfully created and you can now access all the features in Zwallet. Login to your new account and start exploring!</p>
+          <p className="text-start fw-normal text-muted">Your PIN was successfully created and you can now access all the features in Fazzpay. start exploring!</p>
 
           <Link href='/home'>
             <a className="text-decoration-none">

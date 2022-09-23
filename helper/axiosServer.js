@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosServer = axios.create({
-  baseURL: 'https://fazzpay.herokuapp.com/'
+  baseURL: process.env.BACK_END_URL
 })
 
 export default axiosServer

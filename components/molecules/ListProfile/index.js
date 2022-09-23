@@ -17,7 +17,7 @@ export default function ListProfile({id, image, alt, nameUser, phone, link}) {
   // console.log(user);
   
   return (
-    <Link href={link}>
+    <Link href={link ? link : '#'}>
       <a className="text-decoration-none">
         <Col>
           <div onClick={() => onClickProfile(id, Cookies.get('token'))} className="d-flex flex-row justify-content-between align-items-center rounded searchListWrap background-dash-white shadow-sm p-3">

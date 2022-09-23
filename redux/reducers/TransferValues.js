@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUserById } from '../action/TransferValues';
+import { getUserById, transferBalance } from '../action/TransferValues';
 
 const initialState = {
   userChoice: {},
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const TransferValues = createSlice({
-  name: 'transfers',
+  name: 'TransferValues',
   initialState,
   reducers: {
     setAmount: (state, action) => {
@@ -23,6 +23,9 @@ const TransferValues = createSlice({
     setIdUser: (state, action) => {
       state.idUser = action.payload
     },
+    resetTransfer: () => {
+      return initialState
+    }
   },
   extraReducers: (build) => {
     build.addCase(getUserById.pending, (state)=> {
@@ -32,9 +35,18 @@ const TransferValues = createSlice({
     build.addCase(getUserById.fulfilled, (state, action)=> {
       state.userChoice = action.payload.data
     })
+
+    build.addCase(transferBalance.pending, (state)=> {
+      state.errorMsg = null;
+      state.successMsg = null;
+    }) 
+    build.addCase(transferBalance.fulfilled, (state, action)=> {
+      state.errorMsg = action.payload.errorMsg;
+      state.successMsg = action.payload.successMsg;
+    })
   }
 })
 
-export{ getUserById }
-export const { setAmount, setIdUser, setNote} = TransferValues.actions
+export{ getUserById, transferBalance }
+export const { setAmount, setIdUser, setNote, resetTransfer} = TransferValues.actions
 export default TransferValues.reducer

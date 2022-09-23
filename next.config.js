@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  env:{
+    BACK_END_URL:'https://fazzpay-bagusth15.vercel.app/'
+  },
   async rewrites() {
     return [
       {
@@ -29,7 +32,7 @@ const nextConfig = {
         destination: '/auth/inputEmailResetPassword',
       },
       {
-        source: '/new-password',
+        source: '/new-password/:keysChangePassword',
         destination: '/auth/resetPassword',
       },
       {

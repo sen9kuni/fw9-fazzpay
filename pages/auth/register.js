@@ -7,11 +7,15 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Link from 'next/link'
 import {FiMail, FiLock, FiUser} from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
+import { register } from '../../redux/action/authUser'
 
 const registerSechema  = Yup.object().shape({
-  username: Yup.string().min(8).required(),
+  firstname: Yup.string().min(3).required(),
+  lastname: Yup.string().min(3).required(),
   email: Yup.string().email('Invalid email address format').required(),
-  password: Yup.string().min(8).required()
+  password: Yup.string().min(3).required()
 })
 
 const AuthForm = ({errors, handleSubmit, handleChange})=> {
@@ -59,18 +63,33 @@ const AuthForm = ({errors, handleSubmit, handleChange})=> {
         <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
       </Form.Group>
 
-      <Link href='/sign-up/create-pin'>
-        <a className="d-grid text-decoration-none">
-          <Button variant="primary" type="submit" className="btn DashbuttonLogin fw-bold colorWhite">
-          Sign Up
-          </Button>
-        </a>
-      </Link>
+      {/* <Link href='/sign-up/create-pin'>
+        <a className="d-grid text-decoration-none"> */}
+      <Button variant="primary" type="submit" className="btn DashbuttonLogin fw-bold colorWhite">
+      Sign Up
+      </Button>
+      {/* </a>
+      </Link> */}
     </Form>
   )
 }
 
 export default function Register() {
+  const dispatch = useDispatch()
+  const navigate = useRouter()
+  const successMsg = useSelector((state) => state.authUser.successMsg)
+  const errorMsg = useSelector((state) => state.authUser.errorMsg)
+  const onRegister = async value => {
+    // console.log(value);
+    const data = {firstName: value.firstname, lastName: value.lastname, email: value.email, password: value.password}
+    await dispatch(register(data))
+  }
+
+  React.useEffect(() => {
+    if (successMsg === 'Success register user') {
+      navigate.push('/login')
+    }
+  }, [navigate, successMsg])
   return (
     <>
       <Head>
@@ -82,7 +101,9 @@ export default function Register() {
         <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>
           <h3 className="text-start fs-3 fw-bold colorTextPrimary">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</h3>
           <p className="text-start fw-normal text-muted">Transfering money is eassier than ever, you can access <br/> Zwallet wherever you are. Desktop, laptop, mobile phone? <br/> we cover all of that for you!</p>
-          <Formik initialValues={{username: '',email: '', password: ''}} validationSchema={registerSechema}>
+          {successMsg && <Alert className='text-center' variant='success'>{successMsg}</Alert>}
+          {errorMsg && <Alert className='text-center' variant='danger'>{errorMsg}</Alert>}
+          <Formik initialValues={{firstname: '',lastname: '',email: '', password: ''}} validationSchema={registerSechema} onSubmit={onRegister}>
             {(props)=><AuthForm {...props}/>}
           </Formik>
 

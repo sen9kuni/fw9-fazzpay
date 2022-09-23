@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Form, Button} from 'react-bootstrap'
+import {Row, Col, Form, Button, Alert} from 'react-bootstrap'
 import PinInputOne from '../../components/molecules/inputPinOne'
 import DashboardRight from '../../components/organisms/DashboardRight'
 import LogoDashboard from '../../components/organisms/LogoDashboard'
@@ -8,6 +8,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from '../../helper/axios'
 import Cookies from 'js-cookie'
+import { useDispatch, useSelector } from 'react-redux'
+import { updatePin } from '../../redux/action/profile'
 
 
 const CreatePinForm = ({errors, handleSubmit, handleChange}) => {
@@ -33,19 +35,19 @@ const CreatePinForm = ({errors, handleSubmit, handleChange}) => {
 
 export default function CreatePin() {
   const navigate = useRouter()
+  const dispatch = useDispatch()
+  const successMsg = useSelector((state) => state.profile.successMsg)
+  const errorMsg = useSelector((state) => state.profile.errorMsg)
   const onSubmitPin = async (value) => {
-    try {
-      const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
-      const data = {pin: fullPin}
-      const result = await axios.patch(`/user/pin/${Cookies.get('id')}`, data)
-      console.log(result);
-      window.alert(result.data.msg)
-      navigate.push('/auth/create-pin/success')
-    } catch (e) {
-      console.log(e.response);
-      window.alert(e.response.data.msg)
-    }
+    const fullPin = value.pin1 + value.pin2 + value.pin3 + value.pin4 + value.pin5 + value.pin6
+    const data = {pin: fullPin}
+    await dispatch(updatePin(data))
   }
+  React.useEffect(() => {
+    if (successMsg === 'Success update pin user') {
+      navigate.push('/auth/create-pin/success')
+    }
+  }, [navigate, successMsg])
   return (
     <>
       <LogoDashboard />
@@ -55,14 +57,7 @@ export default function CreatePin() {
         <Col md={5} className='p-5 gap-4 px-md-5 p-5 d-flex flex-column gap-md-5'>
           <h3 className="text-start fs-3 fw-bold colorTextPrimary">Secure Your Account, Your Wallet, and Your Data With 6 Digits PIN That You Created Yourself.</h3>
           <p className="text-start fw-normal text-muted">Create 6 digits pin to secure all your money and your data in FazzPay app. Keep it secret and don&apos;t tell anyone about your FazzPay account password and the PIN.</p>
-
-          {/* <PinInput />
-
-          <Link to={'/pinsuccess'} className="text-decoration-none">
-            <div className="d-grid">
-              <button className="btn DashbuttonLogin fw-bold colorWhite">Confirm</button>
-            </div>
-          </Link> */}
+          {errorMsg && <Alert className='text-center' variant='danger'>{errorMsg}</Alert>}
           <Formik onSubmit={onSubmitPin} initialValues={{pin1:'',pin2:'',pin3:'',pin4:'',pin5:'',pin6:'',}} >
             {(props)=><CreatePinForm {...props}/>}
           </Formik>

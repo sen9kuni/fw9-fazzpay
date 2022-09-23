@@ -2,15 +2,55 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import qs from 'qs'
 import axios from '../../helper/axios';
+import axiosServer from '../../helper/axiosServer';
 
 export const login = createAsyncThunk('auth/login', async (request)=> {
   const result = {}
   try {
     // const send = qs.stringify(request)
-    const { data } = await axios.post('auth/login', request)
-    console.log(data);
+    const { data } = await axiosServer.post('auth/login', request)
+    // console.log(data);
     Cookies.set('token', data.data.token)
     Cookies.set('id', data.data.id)
+    Cookies.set('pin', data.data.pin)
+    return data
+  } catch (e) {
+    result.errorMsg = e.response.data.msg
+    return result
+  }
+})
+
+export const forgotPassword = createAsyncThunk('auth/forgot-password', async (request) => {
+  const result = {}
+  try {
+    const send = qs.stringify({email: request.email, linkDirect: 'fw9-fazzpay.vercel.app'})
+    const {data} = await axiosServer.post('auth/forgot-password', send)
+    result.successMsg = data.msg
+    return result
+  } catch (e) {
+    result.errorMsg = e.response.data.msg
+    return result
+  }
+})
+
+export const resetPassword = createAsyncThunk('auth/reset-password', async (request) => {
+  const result = {}
+  try {
+    const {data} = await axiosServer.patch('auth/reset-password', request)
+    result.successMsg = data.msg
+    return result
+  } catch (e) {
+    result.errorMsg = e.response.data.msg
+    return result
+  }
+})
+
+export const register = createAsyncThunk('auth/register', async request => {
+  const result = {}
+  try {
+    // const send = qs.stringify(request)
+    const {data} = await axiosServer.post('/auth/register', request)
+    result.successMsg = data.msg
     return result
   } catch (e) {
     result.errorMsg = e.response.data.msg

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import qs from 'qs'
 import axios from '../../helper/axios';
+import Cookies from 'js-cookie';
 
 export const getUserById = createAsyncThunk('transfer/get-user', async (param)=> {
   const id = param.id
@@ -19,16 +20,18 @@ export const getUserById = createAsyncThunk('transfer/get-user', async (param)=>
 
 export const transferBalance = createAsyncThunk('transfer/transfer', async (param)=> {
   const result = {}
-  const receiverId = param.receiverId
-  const amount = param.amount
-  const notes = param.notes
   try {
-    const send = qs.stringify({receiverId, amount, notes})
-    const { data } = await axios.post('/transaction/transfer', send)
-    result.successMsg = data.data.msg
+    const { data } = await axios.post('/transaction/transfer', param, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('token')}`
+      }
+    })
+    // console.log(data);
+    result.successMsg = data.msg
     return result
   } catch (e) {
-    result.errorMsg = e.response.data.msg
+    console.log(e.response.data.data.msg);
+    result.errorMsg = e.response.data.data.msg
     return result
   }
 })

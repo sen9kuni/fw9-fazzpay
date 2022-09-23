@@ -46,7 +46,7 @@ export default function Confirmation() {
         <ListInfo titleInfo='Amount' info={numberFormat(parseInt(amount))} />
         <ListInfo titleInfo='Balance Left' info={numberFormat(parseInt(parseInt(data?.balance) - parseInt(amount)))} />
         <ListInfo titleInfo='Date & Time' info={new Date().toLocaleString()} />
-        <ListInfo titleInfo='Notes' info={notes} />
+        <ListInfo titleInfo='Notes' info={notes ? notes : '-'} />
       </div>
 
       <div className="d-flex justify-content-end">
